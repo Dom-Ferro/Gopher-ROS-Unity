@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 2.8.3)
+cmake_minimum_required(VERSION 3.0.2)
 project(gopher_control)
 
 ## Compile as C++11, supported in ROS Kinetic and newer
@@ -72,7 +72,7 @@ find_package(catkin REQUIRED COMPONENTS
 ## Generate added messages and services with any dependencies listed here
 # generate_messages(
 #   DEPENDENCIES
-#   std_msgs  # Or other packages containing msgs
+#   geometry_msgs#   sensor_msgs#   std_msgs
 # )
 
 ################################################
@@ -105,9 +105,9 @@ find_package(catkin REQUIRED COMPONENTS
 ## CATKIN_DEPENDS: catkin_packages dependent projects also need
 ## DEPENDS: system dependencies of this project that dependent projects also need
 catkin_package(
-   INCLUDE_DIRS include
-   LIBRARIES teleop_twist_joy
-   CATKIN_DEPENDS geometry_msgs sensor_msgs roscpp rospy std_msgs
+#  INCLUDE_DIRS include
+#  LIBRARIES gopher_control
+#  CATKIN_DEPENDS geometry_msgs roscpp rospy sensor_msgs std_msgs
 #  DEPENDS system_lib
 )
 
@@ -118,14 +118,14 @@ catkin_package(
 ## Specify additional locations of header files
 ## Your package locations should be listed before other locations
 include_directories(
-  include
+# include
   ${catkin_INCLUDE_DIRS}
 )
 
-### # Declare a C++ library
-### add_library(${PROJECT_NAME}
-###   src/teleop_twist_joy
-### )
+## Declare a C++ library
+# add_library(${PROJECT_NAME}
+#   src/${PROJECT_NAME}/gopher_control.cpp
+# )
 
 ## Add cmake target dependencies of the library
 ## as an example, code may need to be generated before libraries
@@ -136,13 +136,6 @@ include_directories(
 ## With catkin_make all packages are built within a single CMake context
 ## The recommended prefix ensures that target names across packages don't collide
 # add_executable(${PROJECT_NAME}_node src/gopher_control_node.cpp)
-
-### add_executable(main_camera_control_interface src/main_camera_control_interface.cpp)
-### target_link_libraries(main_camera_control_interface ${catkin_LIBRARIES})
-
-### add_executable(teleop_twist_joy src/teleop_twist_joy.cpp)
-### target_link_libraries(teleop_twist_joy ${PROJECT_NAME} ${catkin_LIBRARIES})
-### set_target_properties(teleop_twist_joy PROPERTIES OUTPUT_NAME teleop_twist_joy PREFIX "")
 
 ## Rename C++ executable without prefix
 ## The above recommended prefix causes long target names, the following renames the
@@ -163,23 +156,12 @@ include_directories(
 ## Install ##
 #############
 
-### install(TARGETS ${PROJECT_NAME} teleop_twist_joy
-###   ARCHIVE DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
-###   LIBRARY DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
-###   RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION})
-
-### install(DIRECTORY include/${PROJECT_NAME}/
-###   DESTINATION ${CATKIN_PACKAGE_INCLUDE_DESTINATION})
-
-### install(DIRECTORY launch config
-###   DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION})
-
 # all install targets should use catkin DESTINATION variables
 # See http://ros.org/doc/api/catkin/html/adv_user_guide/variables.html
 
 ## Mark executable scripts (Python etc.) for installation
 ## in contrast to setup.py, you can choose the destination
-# install(PROGRAMS
+# catkin_install_python(PROGRAMS
 #   scripts/my_python_script
 #   DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 # )

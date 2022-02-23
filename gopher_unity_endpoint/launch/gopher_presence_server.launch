@@ -30,7 +30,7 @@
     <arg name="with_arms" default="false"/>
     <param name="robot_description" 
            command="$(find xacro)/xacro
-                    $(find gopher_description)/robots/urdf/gopher.xacro
+                    $(find gopher_description)/robots/gopher.xacro
                     robot_name:=$(arg robot_name) with_arms:=$(arg with_arms)" />
     
     <!-- Load navigation package -->
