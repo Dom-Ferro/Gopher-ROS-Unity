@@ -22,7 +22,7 @@
     <xacro:include filename="$(find gopher_description)/fetch_description/urdf/freight.urdf.xacro" />
     <xacro:include filename="$(find gopher_description)/torso_description/urdf/torso.urdf.xacro" />
     <xacro:include filename="$(find gopher_description)/realsense2_description/urdf/_d435.urdf.xacro" />
-    <xacro:include filename="$(find gopher_description)/kortex_description/arms/urdf/kortex_robot.xacro" />
+    <xacro:include filename="$(find gopher_description)/kinova_description/urdf/kortex_robot.xacro" />
 
     <!-- Load urdf -->
     <!-- base -->
