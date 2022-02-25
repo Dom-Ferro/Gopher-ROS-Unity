@@ -23,12 +23,21 @@
                     robot_name:=$(arg robot_name)" />
 
     <!-- Load MoveIt! -->
-    <include file="$(find gen3_robotiq_2f_85_move_it_config)/launch/move_group.launch">
+    <include file="$(find gopher_move_it_config)/launch/kinova_move_it.launch">
       <arg name="dof" value="7"/>
       <arg name="prefix" value="$(arg robot_name)/"/>
     </include>
-  </group>
+    <!-- moveit interface service -->
+    <node name="plan_trajectory" pkg="gopher_move_it_config" type="plan_trajectory.py" 
+          args="--wait" output="screen">
+    </node>
 
+    <!-- Start robot state publisher -->
+    <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"
+        respawn="false" output="screen">
+    </node>
+  </group>
+  
 
   <!-- Transform compressed image to raw image in order to view it in Rviz
   <node name="main_cam_republish" type="republish" pkg="image_transport" output="screen" 
