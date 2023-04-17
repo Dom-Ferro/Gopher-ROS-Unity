@@ -35,7 +35,8 @@
   <node name="move_base" pkg="move_base" type="move_base" respawn="false" output="screen">
     <param name="controller_frequency" value="10.0"/>
     
-    <remap from="cmd_vel" to="$(arg cmd_vel)"/>
+    <!-- Commented out this line to plug in my own control values while utilizing all their maps-->
+    <!--<remap from="cmd_vel" to="$(arg cmd_vel)"/> -->
     <remap from="map" to="/map"/>
     
     <rosparam file="$(find gopher_navigation)/config/costmap_common_params.yaml" 

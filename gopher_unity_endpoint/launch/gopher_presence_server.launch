@@ -1,10 +1,13 @@
 <launch>
 
   <!-- Arguments -->
-  <arg name="tcp_ip" default="192.168.1.124"/>
+  <!--
+  <arg name="tcp_ip" default="192.168.1.15"/>
+  -->
+  <arg name="tcp_ip" default="127.0.0.1"/>
   <arg name="tcp_port" default="10000"/>
 
-  <arg name="world_name" default="sample_map"/>
+  <arg name="world_name" default="map"/>
   <arg name="robot_name" default="gopher_presence"/>
 
   <arg name="pose_x" default="0"/>
@@ -23,6 +26,7 @@
         args="$(find gopher_navigation)/maps/$(arg world_name).yaml">
     <param name="frame_id" value="map" />
   </node>
+  
 
   <!-- Load robot description -->
   <param name ="/use_sim_time" value="true"/>
@@ -33,14 +37,15 @@
                     $(find gopher_description)/robots/gopher.xacro
                     robot_name:=$(arg robot_name) with_arms:=$(arg with_arms)" />
     
-    <!-- Load navigation package -->
+    <!-- Load navigation package (comment out when mapping- to line 43) -->
     <param name="amcl/initial_pose_x" value="$(arg pose_x)" />
     <param name="amcl/initial_pose_y" value="$(arg pose_y)" />
     <param name="amcl/initial_pose_a" value="$(arg pose_yaw)" />
     <include file="$(find gopher_navigation)/launch/gopher_amcl.launch">
       <arg name="robot_name" value="$(arg robot_name)"/>
     </include>
-  </group>
+  </group> 
+    
 
 
   <!-- Transform compressed image to raw image in order to view it in Rviz
